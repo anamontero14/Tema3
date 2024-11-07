@@ -41,8 +41,12 @@ public class Ejer8 {
 		mostrar = leer.nextInt();
 
 		// recorrer la tabla
-		for (int valor : tabla) {
-
+		for (int i = 0; i < 100; i++) {
+			// si lo que hay en la tabla es igual a mostrar
+			if (tabla[i] == mostrar) {
+				// muestra el valor de la i
+				System.out.println("Posición: " + i);
+			}
 		}
 
 		// cerrar el scanner
