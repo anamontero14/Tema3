@@ -1,5 +1,6 @@
 package ejerciciosparte1;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,7 +18,10 @@ public class Ejer8 {
 		Random rand = new Random();
 
 		// creacion de la variable para el valor que habrá que mostrar
-		int mostrar;
+		int mostrar = 0;
+
+		// variable para poder salir
+		boolean salir = false;
 
 		// crear la tabla
 		int tabla[] = new int[100];
@@ -34,11 +38,35 @@ public class Ejer8 {
 			tabla[i] = num;
 		}
 
-		// le digo al usuario que me introduzca el valor que quiere buscar
-		System.out.print("Introduzca el valor a buscar: ");
+		// comprobar la entrada
+		do {
 
-		// almaceno la respuesta en la variable
-		mostrar = leer.nextInt();
+			// comprobación
+			try {
+				// le digo al usuario que me introduzca el valor que quiere buscar
+				System.out.print("Introduzca el valor a buscar: ");
+
+				// almaceno la respuesta en la variable
+				mostrar = leer.nextInt();
+
+				// establecer el rango
+				assert mostrar >= 0 && mostrar <= 10 : "Error. Valor a buscar fuera del rango.";
+
+				// si no hay excepción entonces se sale
+				salir = true;
+
+				// para el error de asserción
+			} catch (AssertionError a) {
+				System.err.println(a.getMessage());
+			} catch (InputMismatchException e) {
+				// mostrar el error
+				System.err.println("Error. Debe introducir un número.");
+			} finally {
+				// limpiar el buffer
+				leer.nextLine();
+			}
+
+		} while (!salir);
 
 		// recorrer la tabla
 		for (int i = 0; i < 100; i++) {
