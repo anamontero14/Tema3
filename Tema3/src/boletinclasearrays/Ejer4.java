@@ -1,5 +1,7 @@
 package boletinclasearrays;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ejer4 {
@@ -24,13 +26,27 @@ public class Ejer4 {
 		Scanner leer = new Scanner(System.in);
 
 		// for para pedirle al usuario
-		for (int i = 1; i <= 8; i++) {
+		for (int i = 1; i < 8; i++) {
 
 			// pedirle las puntuaciones al usuario
 			System.out.print("Introduzca las puntuaciones de los participantes: ");
 
 			// almacenar las puntuaciones en la variable
 			puntuaciones = leer.nextInt();
+
+			// le asigno a la celda de la tabla el valor introducido
+			tabla[i] = puntuaciones;
+		}
+
+		// ordeno la tabla
+		Arrays.sort(tabla);
+
+		System.out.print("Puntuaciones: ");
+		
+		// la muestro en orden descendente
+		for (int i = 7; i >= 0; i--) {
+			// lo muestro por pantalla
+			System.out.print(tabla[i] + ", ");
 		}
 
 		// cerrar Scanner
