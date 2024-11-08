@@ -1,5 +1,7 @@
 package boletinclasearrays;
 
+import java.util.Scanner;
+
 public class Ejer4 {
 
 	public static void main(String[] args) {
@@ -17,9 +19,22 @@ public class Ejer4 {
 
 		// creacion de la tabla
 		int tabla[] = new int[8];
-		
-		
-		
+
+		// creacion de Scanner
+		Scanner leer = new Scanner(System.in);
+
+		// for para pedirle al usuario
+		for (int i = 1; i <= 8; i++) {
+
+			// pedirle las puntuaciones al usuario
+			System.out.print("Introduzca las puntuaciones de los participantes: ");
+
+			// almacenar las puntuaciones en la variable
+			puntuaciones = leer.nextInt();
+		}
+
+		// cerrar Scanner
+		leer.close();
 	}
 
 }
