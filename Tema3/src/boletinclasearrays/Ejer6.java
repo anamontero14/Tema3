@@ -29,13 +29,38 @@ public class Ejer6 {
 		// variable que almacenará el número de aciertos
 		int aciertos = 0;
 
-		// asignación de los valores random a la tabla
-		for (int i = 0; i < 6; i++) {
-			// creo un número random desde 1 hasta 50 - 1 y lo almaceno en numRandom
-			numRandom = random.nextInt(1, 50);
+		int contador = 0;
 
-			// asigno la variable numRandom a la tabla
-			tabla1[i] = numRandom;
+		int busqueda;
+
+		// bucle para ir poniendo los números en la tabla
+		while (contador < 6) {
+			// creo el número random y lo asigno a la variable
+			numRandom = random.nextInt(1, 50);
+			// ordena la tabla de menor a mayor
+			Arrays.sort(tabla1);
+			/*
+			 * busca si en tabla1 se encuentra el número random generado, si NO se encuentra
+			 * igualará 'busqueda' a un número negativo y si SÍ se encuentra
+			 */
+			busqueda = Arrays.binarySearch(tabla1, numRandom);
+			/*
+			 * si 'busqueda' tiene un valor negativo (si 'busqueda' es menor que 0) entrará
+			 * en el if
+			 */
+			if (busqueda < 0) {
+				/*
+				 * Como la tabla va a estar ordenada podemos igualar siempre a la posicion 0 el
+				 * número random porque ya que va a estar ordenada de menor a mayor pues los
+				 * números siempre van a estar a la derecha y el 0 a la izquierda
+				 */
+				tabla1[0] = numRandom;
+				/*
+				 * incrementa el contador para que siga buscando en las diferentes posiciones de
+				 * la tabla
+				 */
+				contador++;
+			}
 		}
 
 		// ordeno la segunda tabla
