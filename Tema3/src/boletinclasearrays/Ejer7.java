@@ -19,26 +19,12 @@ public class Ejer7 {
 		// inicio
 		int inicio = 0;
 
-		// hasta
-		int hasta = 1;
-
-		// numero
-		int num = 1;
-
-		for (int i = 0; i < 10; i++) {
-
-			for (int j = 0; j <= i; j++) {
-
-				Arrays.fill(tabla, inicio, hasta, num);
-
-				System.out.print(tabla[i] + ", ");
-
-				inicio++;
-				hasta++;
-				num++;
-
-			}
+		for (int i = 1; i <= 10; i++) {
+			Arrays.fill(tabla, inicio, inicio + i, i);
+			inicio += i;
 		}
+
+		System.out.print(Arrays.toString(tabla));
 
 	}
 
