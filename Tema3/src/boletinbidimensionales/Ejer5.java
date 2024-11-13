@@ -23,6 +23,9 @@ public class Ejer5 {
 		// suma columnas
 		int sumaFila = 0;
 
+		// variable para la suma total
+		int suma = 0;
+
 		// creacion de la clase random
 		Random rand = new Random();
 
@@ -39,29 +42,30 @@ public class Ejer5 {
 				// le asigno dicho numero aleatorio a la posicion
 				tabla[i][j] = numRandom;
 
-			}
-		}
-
-		// muestro la tabla (filas)
-		for (int i = 0; i < 4; i++) {
-			// bucle interno para mostrar las columnas
-			for (int j = 0; j < 5; j++) {
 				// voy sumando el valor de las columnas
 				sumaFila += tabla[i][j];
 				// muestro las columnas
 				System.out.print(tabla[i][j] + "\t");
 
 			}
-
-			sumaColum += tabla[i][i];
-
-			// muestro la suma de la columna
 			System.out.print("= " + sumaFila + "");
 
 			System.out.println();
 		}
 
-		System.out.println(sumaColum + "\t");
+		// bucle para la suma de las columnas
+		for (int i = 0; i < 5; i++) {
+			// bucle para contar las filas
+			for (int j = 0; j < 4; j++) {
+				// sumo y asigno a la variable sumaColum
+				sumaColum += tabla[j][i];
+
+			}
+			System.out.print("= " + sumaColum + "|");
+		}
+
+		suma = sumaColum + sumaFila;
+		System.out.println("\t= " + suma);
 
 	}
 
