@@ -1,5 +1,6 @@
 package boletinbidimensionales;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ejer2 {
@@ -12,6 +13,9 @@ public class Ejer2 {
 		 * continuación, mostrará la nota mínima, máxima y media de cada alumno.
 		 */
 
+		// variable para controlar la salida
+		boolean salir = false;
+
 		/*
 		 * Variable para indicar el número de alumno del que se está introduciendo la
 		 * nota en cada momento
@@ -22,7 +26,7 @@ public class Ejer2 {
 		double notasAlumnos[][] = new double[4][5];
 
 		// variable para ir almacenando la nota introducida por la entrada
-		double nota;
+		double nota = 0;
 
 		// variable para la nota mínima
 		double minima = Double.MAX_VALUE;
@@ -45,10 +49,22 @@ public class Ejer2 {
 			// bucle interno para las columnas
 			for (int j = 0; j < 5; j++) {
 
-				System.out.print("Nota: ");
+				// bucle do while para controlar la entrada de datos
+				do {
+					try {
+						System.out.print("Nota: ");
 
-				// asigno el valor introducido a la variable
-				nota = leer.nextDouble();
+						// asigno el valor introducido a la variable
+						nota = leer.nextDouble();
+						// igualar salir a true para poder salir
+						salir = true;
+					} catch (InputMismatchException e) {
+						System.err.println("Introduzca un valor adecuado.");
+					} finally {
+						// limpiar el buffer
+						leer.nextLine();
+					}
+				} while (!salir);
 
 				// asigno el valor de la variable a la posición de la tabla
 				notasAlumnos[i][j] = nota;

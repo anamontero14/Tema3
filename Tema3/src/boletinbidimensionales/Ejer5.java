@@ -23,9 +23,6 @@ public class Ejer5 {
 		// suma columnas
 		int sumaFila = 0;
 
-		// variable para la suma total
-		int suma = 0;
-
 		// creacion de la clase random
 		Random rand = new Random();
 
@@ -64,8 +61,7 @@ public class Ejer5 {
 			System.out.print("= " + sumaColum + "|");
 		}
 
-		suma = sumaColum + sumaFila;
-		System.out.println("\t= " + suma);
+		System.out.println("\t= " + sumaFila);
 
 	}
 

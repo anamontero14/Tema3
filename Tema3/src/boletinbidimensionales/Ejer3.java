@@ -1,5 +1,6 @@
 package boletinbidimensionales;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ejer3 {
@@ -13,11 +14,14 @@ public class Ejer3 {
 		 * tabla por consola.
 		 */
 
+		// variable para poder salir del bucle de comprobacion
+		boolean salir = false;
+
 		// variable para almacenar el valor de las filas
-		int filas;
+		int filas = 0;
 
 		// variables para almacenar el valor de las columnas
-		int columnas;
+		int columnas = 0;
 
 		// creacion de la tabla
 		int tabla[][];
@@ -25,15 +29,29 @@ public class Ejer3 {
 		// creacion del Scanner
 		Scanner leer = new Scanner(System.in);
 
-		// le pido al usuario que introduzca los valores
-		System.out.print("Introduzca el número de filas que quiere que tenga la tabla: ");
-		// almaceno el dato introducido en la variable
-		filas = leer.nextInt();
+		// bucle do while para controlar los errores
 
-		// le pido al usuairo el valor para las columnas
-		System.out.print("Introduzca el número de columnas que quiere que tenga la tabla: ");
-		// almaceno el dato introducidl en la variable columnas
-		columnas = leer.nextInt();
+		do {
+			try {
+				// le pido al usuario que introduzca los valores
+				System.out.print("Introduzca el número de filas que quiere que tenga la tabla: ");
+				// almaceno el dato introducido en la variable
+				filas = leer.nextInt();
+
+				// le pido al usuairo el valor para las columnas
+				System.out.print("Introduzca el número de columnas que quiere que tenga la tabla: ");
+				// almaceno el dato introducidl en la variable columnas
+				columnas = leer.nextInt();
+				
+				// igualo la variable a true para salir del bucle
+				salir = true;
+			} catch (InputMismatchException e) {
+				System.err.println("Introduzca un valor válido.");
+			} finally {
+				// limpiar buffer
+				leer.nextLine();
+			}
+		} while (!salir);
 
 		// le doy los valores a la tabla
 		tabla = new int[filas][columnas];
