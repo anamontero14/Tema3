@@ -12,7 +12,7 @@ public class Ejer1 {
 		// creación de tabla
 		int[] tabla = { 2, 2 };
 		
-		System.out.println("El resultado de la suma de los valores de la tabla es: ");
+		System.out.print("El resultado de la suma de los valores de la tabla es: ");
 		
 		sumaValores(tabla);
 	}
