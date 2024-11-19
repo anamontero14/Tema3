@@ -11,10 +11,9 @@ public class Ejer1 {
 
 		// creación de tabla
 		int[] tabla = { 2, 2 };
-		
-		System.out.print("El resultado de la suma de los valores de la tabla es: ");
-		
-		sumaValores(tabla);
+
+		System.out.print("El resultado de la suma de los valores de la tabla es: " + sumaValores(tabla));
+
 	}
 
 	// llamada a la funcion
@@ -25,8 +24,6 @@ public class Ejer1 {
 		for (int valores : tabla) {
 			suma += valores;
 		}
-		
-		System.out.println(suma);
 
 		// establezco que me devuelva el resultado en la variable suma
 		return suma;
