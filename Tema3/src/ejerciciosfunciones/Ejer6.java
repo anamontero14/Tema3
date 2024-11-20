@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Ejer6 {
 
 	public static void main(String[] args) {
+
 		/*
 		 * Implementa la función: int[] suma(int t[], int numElementos), que crea y
 		 * devuelve una tabla con las sumas de los numElementos elementos consecutivos
@@ -23,34 +24,24 @@ public class Ejer6 {
 		// creacion de tabla
 		int tabla[] = { 10, 1, 5, 8, 9, 2 };
 
-		// creacion de la tabla de los resultados
-		int resultados[] = new int[10];
-
 		// creo el Scanner
 		Scanner leer = new Scanner(System.in);
 
 		// variable para almacenar la respuesta del usuario
 		int agrupar = respuestas("Introduce el número por el que quieres ir sumando: ");
 
-		for (int i = 0; i < tabla.length; i++) {
-			for (int j = 0; j < agrupar; j++) {
-				sumar += tabla[contador];
-
-				if (contador < tabla.length) {
-					contador++;
-				}
-			}
-
-			if (contador >= tabla.length) {
-				break;
-			}
-
-			contador--;
-			resultados[i] = sumar;
-			System.out.println(resultados[i]);
+		// creacion de la tabla de los resultados
+		int resultados[] = new int[tabla.length - agrupar + 1];
+		
+		
+		for (int i = 0; i <= tabla.length - agrupar; i++) {
 			sumar = 0;
+			for (int j = 0; j < agrupar; j++) {
+				sumar += tabla[i + j];
+			}
+			resultados[i] = sumar;
 		}
-
+		
 		System.out.println(Arrays.toString(resultados));
 
 	}
