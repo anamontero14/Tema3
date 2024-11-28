@@ -200,7 +200,7 @@ public class Ejer04 {
 				if (movimientos[i][j] != movimientos[posFila][posColumna]) {
 					movimientos[i][j] = '*';
 				}
-			}
+			} //hola
 		}
 
 		// es exactamente igual que el otro solo que con la fila
