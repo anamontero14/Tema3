@@ -127,8 +127,6 @@ public class Ejer04 {
 		// tabla a devolver
 		char movimientos[][] = new char[8][8];
 
-		int cont = 7;
-
 		// relleno el tablero
 		for (int i = 0; i < movimientos.length; i++) {
 			Arrays.fill(movimientos[i], '-');
@@ -165,6 +163,56 @@ public class Ejer04 {
 
 		// tabla a devolver
 		char movimientos[][] = new char[8][8];
+
+		// relleno el tablero
+		for (int i = 0; i < movimientos.length; i++) {
+			Arrays.fill(movimientos[i], '-');
+		}
+
+		// en la celda especificada añado la letra de la pieza
+		movimientos[posFila][posColumna] = pieza;
+
+		// Diagonal superior derecha
+		for (int i = 1; posFila - i >= 0 && posColumna + i < 8; i++) {
+			movimientos[posFila - i][posColumna + i] = '*';
+		}
+
+		// Diagonal superior izquierda
+		for (int i = 1; posFila - i >= 0 && posColumna - i >= 0; i++) {
+			movimientos[posFila - i][posColumna - i] = '*';
+		}
+
+		// Diagonal inferior derecha
+		for (int i = 1; posFila + i < 8 && posColumna + i < 8; i++) {
+			movimientos[posFila + i][posColumna + i] = '*';
+		}
+
+		// Diagonal inferior izquierda
+		for (int i = 1; posFila + i < 8 && posColumna - i >= 0; i++) {
+			movimientos[posFila + i][posColumna - i] = '*';
+		}
+
+		// quiero hacer un for que empiece en la fila 0 y en la posición designada
+		for (int i = 0; i < movimientos.length; i++) {
+			for (int j = posColumna; j <= posColumna; j++) {
+
+				// si la posición es la misma que la de la letra entonces no lo añade
+				if (movimientos[i][j] != movimientos[posFila][posColumna]) {
+					movimientos[i][j] = '*';
+				}
+			}
+		}
+
+		// es exactamente igual que el otro solo que con la fila
+		for (int i = posFila; i <= posFila; i++) {
+			for (int j = 0; j < movimientos[0].length; j++) {
+
+				// si la posición es la misma que la de la letra entonces no lo añade
+				if (movimientos[i][j] != movimientos[posFila][posColumna]) {
+					movimientos[i][j] = '*';
+				}
+			}
+		}
 
 		return movimientos;
 
