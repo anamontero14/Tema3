@@ -1,5 +1,6 @@
 package ejerciciosfunciones;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ejer9 {
@@ -18,10 +19,10 @@ public class Ejer9 {
 		Scanner leer = new Scanner(System.in);
 
 		// creo una variable para recoger las filas de la tabla
-		int filas;
+		int filas = leer("filas");
 
 		// creo una variable para recoger las columnas de la tabla
-		int colum;
+		int colum = leer("columnas");
 
 		// creo una variable para almacenar los número introducidos por el usuairo
 		int num;
@@ -29,32 +30,30 @@ public class Ejer9 {
 		// creación de tabla bidimensional
 		int tabla[][];
 
-		// pregunto por la cantidad de filas
-		System.out.print("Introduzca la cantidad de filas que quiere que tenga la matriz: ");
-		filas = leer.nextInt();
-
-		// pregunto por la cantidad de filas
-		System.out.print("Introduzca la cantidad de columnas que quiere que tenga la matriz: ");
-		colum = leer.nextInt();
-
 		// le doy la longitud a la tabla
 		tabla = new int[filas][colum];
 
-		// creo un bucle para preguntar por los valores de la tabla
-		for (int i = 0; i < tabla.length; i++) {
-			for (int j = 0; j < tabla[0].length; j++) {
-				System.out.print("Introduzca los valores para la matriz: ");
-				num = leer.nextInt();
-				// voy asignando los números introducidos
-				tabla[i][j] = num;
+		// si la tabla no es cuadrada
+		if (tabla.length != tabla[0].length) {
+			System.err.println("Debe introducir el mismo número de filas que de columnas");
+		} else {
+
+			// creo un bucle para preguntar por los valores de la tabla
+			for (int i = 0; i < tabla.length; i++) {
+				for (int j = 0; j < tabla[0].length; j++) {
+					System.out.print("Introduzca los valores para la matriz: ");
+					num = leer.nextInt();
+					// voy asignando los números introducidos
+					tabla[i][j] = num;
+				}
 			}
+
+			// creo una variable para almacenar la llamada a la funcion
+			boolean funcion = simetria(tabla);
+
+			// muestro la función
+			System.out.println(funcion);
 		}
-
-		// creo una variable para almacenar la llamada a la funcion
-		boolean funcion = simetria(tabla);
-
-		// muestro la función
-		System.out.println(funcion);
 
 		// cierro el Scanner
 		leer.close();
@@ -69,24 +68,50 @@ public class Ejer9 {
 		// variable para indicar si la tabla es simetrica o no
 		boolean simetrica = true;
 
-		// si la matriz no es cuadrada
-		if (tablaAlmacenada.length != tablaAlmacenada[0].length) {
-			simetrica = false;
-		} else {
+		// variable para poder salir
+		boolean salir = false;
 
-			// recorro las filas
-			for (int i = 0; i < tablaAlmacenada.length; i++) {
-				// recorro las columnas
-				for (int j = 0; j < tablaAlmacenada[0].length; j++) {
-					// si las celdas no son iguales iguala la variable a false
-					if (tablaAlmacenada[i][j] != tablaAlmacenada[j][i]) {
-						simetrica = false;
-					}
+		int i = 0;
+		int j = 0;
+
+		while (!salir && i < tablaAlmacenada.length) {
+			while (!salir && j < tablaAlmacenada[0].length) {
+				if (tablaAlmacenada[i][j] != tablaAlmacenada[j][i]) {
+					salir = true;
+					simetrica = false;
 				}
+				j++;
 			}
+			i++;
 		}
-		
+
 		return simetrica;
+	}
+
+	static int leer(String dato) {
+		// creo el scanner
+		Scanner leer = new Scanner(System.in);
+
+		int numero = -1;
+
+		do {
+			try {
+				System.out.print("Introduzca la cantidad de " + dato + " que quiere que tenga la matriz: ");
+				numero = leer.nextInt();
+
+				assert numero > 0 : "El número de " + dato + " debe ser mayor que 0";
+				
+			} catch (InputMismatchException e) {
+				System.err.println("Debe introducir un entero");
+			} catch (AssertionError a) {
+				System.err.println(a.getMessage());
+			}
+			finally {
+				leer.nextLine();
+			}
+		} while (numero < 0);
+
+		return numero;
 	}
 
 }
