@@ -26,40 +26,31 @@ public class Ejer02 {
 
 	static int[] desordenar(int[] tabla) {
 
-		// creo la clase random
+		// Clase random para generar índices aleatorios
 		Random rand = new Random();
 
-		int almacen = 0;
+		// variable para almacenar temporalmente el contenido de la posicion actual
+		int temp;
 
-		int busqueda = 0;
+		// variable para almacenar un numero random que corresponderá a un indice random
+		// de la tabla
+		int randomIndex;
 
-		int valorAnterior = 0;
-
-		// creo una variable para almacenar dicho número random
-		int numRand;
-
-		// creo un for para generar los números random
+		// bucle para intercambiar valores de la tabla
 		for (int i = 0; i < tabla.length; i++) {
-			// creo un número random para coger una posición de la tabla aleatoriamente
-			numRand = rand.nextInt(0, tabla.length);
+			// genero un índice aleatorio
+			randomIndex = rand.nextInt(0, tabla.length);
 
-			// primero almaceno lo que hay en tabla[j] en una variable
-			valorAnterior = tabla[numRand];
+			// igualo lo que haya en la posición actual a la variable temp para tenerlo
+			// almacenado en algún lugar
+			temp = tabla[i];
 
-			// a continuación voy a comprobar si lo que hay en 'valorAnterior' está en la
-			// tabla
-			busqueda = Arrays.binarySearch(tabla, valorAnterior);
+			// en la posición actual almaceno lo que haya en el número random generado
+			tabla[i] = tabla[randomIndex];
 
-			// si NO está en la tabla entonces
-			if (busqueda < 0) {
-
-				// después igualo esa posición a 0
-				tabla[i] = 0;
-
-				// y asigno el valor de la posición random a lo que haya en la posición actual
-				tabla[numRand] = tabla[i];
-
-			}
+			// y en la posición random le igualo lo que hay en temp que es lo que había en
+			// la posición actual
+			tabla[randomIndex] = temp;
 
 		}
 

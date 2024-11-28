@@ -47,7 +47,7 @@ public class Ejer10 {
 				num = leer.nextInt();
 
 				// le asigno el dato a la posicion correspondiente
-				tabla[i][j] = num;
+				tabla[i][j] = num;	
 			}
 		}
 

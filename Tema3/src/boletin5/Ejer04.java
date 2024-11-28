@@ -62,7 +62,7 @@ public class Ejer04 {
 			yield movimientosDama(posFila, posColumna, pieza);
 		}
 		case 'C', 'c' -> {
-			yield movimientosTorre(posFila, posColumna, pieza);
+			yield movimientosCaballo(posFila, posColumna, pieza);
 		}
 
 		// si no es nada
@@ -200,7 +200,7 @@ public class Ejer04 {
 				if (movimientos[i][j] != movimientos[posFila][posColumna]) {
 					movimientos[i][j] = '*';
 				}
-			} //hola
+			} // hola
 		}
 
 		// es exactamente igual que el otro solo que con la fila
@@ -222,6 +222,33 @@ public class Ejer04 {
 
 		// tabla a devolver
 		char movimientos[][] = new char[8][8];
+
+		int nuevaFila;
+		int nuevaColumna;
+
+		// Desplazamientos posibles del caballo
+		int[] desplazamientosFila = { -2, -2, -1, -1, 1, 1, 2, 2 };
+		int[] desplazamientosColumna = { -1, 1, -2, 2, -2, 2, -1, 1 };
+
+		// relleno el tablero
+		for (int i = 0; i < movimientos.length; i++) {
+			Arrays.fill(movimientos[i], '-');
+		}
+
+		// en la celda especificada añado la letra de la pieza
+		movimientos[posFila][posColumna] = pieza;
+
+		// Iterar por los 8 movimientos posibles
+		for (int i = 0; i < movimientos.length; i++) {
+			nuevaFila = posFila + desplazamientosFila[i];
+			nuevaColumna = posColumna + desplazamientosColumna[i];
+
+			// Verificar si la nueva posición está dentro del tablero
+			if (nuevaFila >= 0 && nuevaFila < movimientos.length && nuevaColumna >= 0
+					&& nuevaColumna < movimientos.length) {
+				movimientos[nuevaFila][nuevaColumna] = '*';
+			}
+		}
 
 		return movimientos;
 
