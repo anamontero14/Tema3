@@ -49,6 +49,13 @@ public class Ejer01 {
 		// tamaño del panel
 		char tabla[][] = new char[3][3];
 
+		// variable para almacenar la funcion
+		int funcion1;
+		int funcion2;
+		int funcion3;
+
+		int funcionFinal = 0;
+
 		// relleno el tablero
 		for (int i = 0; i < tabla.length; i++) {
 			Arrays.fill(tabla[i], '-');
@@ -123,14 +130,32 @@ public class Ejer01 {
 				for (char colum : fila) {
 					System.out.print(" " + colum);
 
-					
-
 				}
 				System.out.println();
 			}
 
+			funcion1 = ganarV(tabla);
+			funcion2 = ganarH(tabla);
+			funcion3 = ganarD(tabla);
+
+			if (funcion1 != 0) {
+				funcionFinal = funcion1;
+			} else if (funcion2 != 0) {
+				funcionFinal = funcion2;
+			} else if (funcion3 != 0) {
+				funcionFinal = funcion3;
+			}
+
 			// increment
 			j++;
+
+			if (funcionFinal != 0) {
+				System.out.println("The player " + funcionFinal + " wins!");
+				win = true;
+			} else if (funcionFinal == 0) {
+				System.out.println("No one wins!");
+				empty = true;
+			}
 
 		}
 
@@ -138,15 +163,162 @@ public class Ejer01 {
 		reader.close();
 
 	}
-	
-	static boolean ganarV(char tabla[][]) {
-		
-		//variable to store who wins in vertical
-		boolean winV = false;
-		
-		//for (int i = 0; )
-		
-		return winV;
+
+	static int ganarV(char tabla[][]) {
+
+		// variable to store who wins in vertical
+		boolean winV1 = false;
+		boolean winV2 = false;
+
+		int ganador = 0;
+
+		// contador que llevará el número de aciertos
+		int cont1 = 0;
+		int cont2 = 0;
+
+		// recorre la tabla
+		for (int i = 0; i < tabla.length; i++) {
+			// recorre las columnas
+			for (int j = 0; j < tabla.length; j++) {
+				// si la celda de la columna es igual a X
+				if (tabla[j][i] == 'X') {
+					cont1++;
+
+					// si el contador es 3 entonces ha ganado
+					if (cont1 == 3) {
+						winV1 = true;
+					}
+				} else if (tabla[j][i] == 'O') {
+					cont2++;
+
+					if (cont2 == 3) {
+						winV2 = true;
+					}
+				}
+			}
+			cont1 = 0;
+			cont2 = 0;
+		}
+
+		// decidir el ganador
+		if (winV1 == true) {
+			ganador = 1;
+		} else if (winV2 == true) {
+			ganador = 2;
+		}
+
+		return ganador;
 	}
-	
+
+	static int ganarH(char tabla[][]) {
+
+		// variable to store who wins in vertical
+		boolean winV1 = false;
+		boolean winV2 = false;
+
+		int ganador = 0;
+
+		// contador que llevará el número de aciertos
+		int cont1 = 0;
+		int cont2 = 0;
+
+		// recorre la tabla
+		for (int i = 0; i < tabla.length; i++) {
+			// recorre las columnas
+			for (int j = 0; j < tabla.length; j++) {
+				// si la celda de la columna es igual a X
+				if (tabla[i][j] == 'X') {
+					
+					cont1++;
+
+					// si el contador es 3 entonces ha ganado
+					if (cont1 == 3) {
+						winV1 = true;
+					}
+				} else if (tabla[i][j] == 'O') {
+					
+					cont2++;
+
+					if (cont2 == 3) {
+						winV2 = true;
+					}
+				}
+			}
+			cont1 = 0;
+			cont2 = 0;
+		}
+
+		// decidir el ganador
+		if (winV1 == true) {
+			ganador = 1;
+		} else if (winV2 == true) {
+			ganador = 2;
+		}
+
+		return ganador;
+	}
+
+	static int ganarD(char tabla[][]) {
+
+		// variable to store who wins in vertical
+		boolean winV1 = false;
+		boolean winV2 = false;
+
+		int ganador = 0;
+
+		// contador que llevará el número de aciertos
+		int cont1 = 0;
+		int cont2 = 0;
+
+		// recorre la tabla
+		for (int i = 0; i < tabla.length; i++) {
+			// si la celda de la columna es igual a X
+			if (tabla[i][i] == 'X') {
+				cont1++;
+
+				// si el contador es 3 entonces ha ganado
+				if (cont1 == 3) {
+					winV1 = true;
+				}
+			} else if (tabla[i][i] == 'O') {
+				cont2++;
+
+				if (cont2 == 3) {
+					winV2 = true;
+				}
+			}
+		}
+
+		cont1 = 0;
+		cont2 = 0;
+
+		// recorre la tabla
+		for (int i = tabla.length; i < 0; i--) {
+			// si la celda de la columna es igual a X
+			if (tabla[i][i] == 'X') {
+				cont1++;
+
+				// si el contador es 3 entonces ha ganado
+				if (cont1 == 3) {
+					winV1 = true;
+				}
+			} else if (tabla[i][i] == 'O') {
+				cont2++;
+
+				if (cont2 == 3) {
+					winV2 = true;
+				}
+			}
+		}
+
+		// decidir el ganador
+		if (winV1 == true) {
+			ganador = 1;
+		} else if (winV2 == true) {
+			ganador = 2;
+		}
+
+		return ganador;
+	}
+
 }
